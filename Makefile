@@ -9,3 +9,10 @@ dev:
 prod:
 	docker stop $(docker ps -q) || true
 	docker-compose -f docker-compose.prod.yaml up --build
+composer:
+	docker-compose run --rm -u ${UID}:${GID} php composer $(c)
+console:
+	docker-compose run --rm -u ${UID}:${GID} sh -c  "./bin/console $(c)"
+unit:
+	docker-compose run --rm -u ${UID}:${GID} php sh -c "./vendor/bin/phpunit --order=random --testsuite=Unit"
+
