@@ -2,15 +2,15 @@
 
 namespace App\Tests\Unit\Core\Application;
 
-use App\Core\Application\UpdateBook\UpdateBookCommand;
-use App\Core\Application\UpdateBook\UpdateBookHandler;
+use App\Core\Application\DeleteBook\DeleteBookCommand;
+use App\Core\Application\DeleteBook\DeleteBookHandler;
 use App\Core\Domain\Book;
 use App\Tests\Unit\Core\Domain\TestBookRepository;
 use PHPUnit\Framework\TestCase;
 
-class UpdateBookTest extends TestCase
+class DeleteBookTest extends TestCase
 {
-    public function testItUpdatesABook()
+    public function testItDeletesABook()
     {
         $books = new TestBookRepository();
         $book = new Book(
@@ -19,17 +19,15 @@ class UpdateBookTest extends TestCase
         );
         $books->save($book);
 
-        $handler = new UpdateBookHandler(
+        $handler = new DeleteBookHandler(
             $books
         );
-        $command = new UpdateBookCommand(
-            'ISBNTEST',
-            'Don Quijote de la mancha'
+        $command = new DeleteBookCommand(
+            'ISBNTEST'
         );
         $handler->__invoke($command);
 
         $book = $books->find('ISBNTEST');
-        self::assertNotNull($book);
-        self::assertEquals('Don Quijote de la mancha', $book->title());
+        self::assertNull($book);
     }
 }
