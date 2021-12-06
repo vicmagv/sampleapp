@@ -4,7 +4,7 @@ namespace App\Tests\Unit\Core\Application;
 
 use App\Core\Application\DeleteBook\DeleteBookCommand;
 use App\Core\Application\DeleteBook\DeleteBookHandler;
-use App\Core\Domain\Book;
+use App\Tests\Mother\Core\BookMother;
 use App\Tests\Unit\Core\Domain\TestBookRepository;
 use PHPUnit\Framework\TestCase;
 
@@ -13,21 +13,18 @@ class DeleteBookTest extends TestCase
     public function testItDeletesABook()
     {
         $books = new TestBookRepository();
-        $book = new Book(
-            'ISBNTEST',
-            'El Quijote'
-        );
+        $book = BookMother::book();
         $books->save($book);
 
         $handler = new DeleteBookHandler(
             $books
         );
         $command = new DeleteBookCommand(
-            'ISBNTEST'
+            $book->isbn()
         );
         $handler->__invoke($command);
 
-        $book = $books->find('ISBNTEST');
+        $book = $books->find($book->isbn());
         self::assertNull($book);
     }
 }
