@@ -15,6 +15,9 @@ class UpdateBookHandler
     public function __invoke(UpdateBookCommand $command): void
     {
         $book = $this->books->find($command->isbn);
+        if ($book === null) {
+            return;
+        }
 
         $book->updateTitle($command->title);
 

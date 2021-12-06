@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class DeleteBookTest extends TestCase
 {
-    public function testItDeletesABook()
+    public function testItDeletesABook(): void
     {
         $books = new TestBookRepository();
         $book = BookMother::book();

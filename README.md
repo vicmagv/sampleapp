@@ -18,9 +18,12 @@ Run a dev environment
 ```
 make dev
 ```
+Run PHPStan
+```
+make stan
+```
 
 ## Todo
 - [ ] añadir phpcs
-- [ ] añadir phpstan
 - [ ] añadir test de integración
 - [ ] añadir test de aceptación

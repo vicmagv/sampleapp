@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class UpdateBookTest extends TestCase
 {
-    public function testItUpdatesABook()
+    public function testItUpdatesABook(): void
     {
         $books = new TestBookRepository();
         $book = BookMother::book();

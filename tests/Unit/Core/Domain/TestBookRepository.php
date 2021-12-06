@@ -7,6 +7,7 @@ use App\Core\Domain\BookRepository;
 
 class TestBookRepository implements BookRepository
 {
+    /** @var Book[]  */
     private array $books;
 
     public function find(string $isbn): ?Book
@@ -19,7 +20,7 @@ class TestBookRepository implements BookRepository
         $this->books[$book->isbn()] = $book;
     }
 
-    public function delete(string $isbn)
+    public function delete(string $isbn): void
     {
         unset($this->books[$isbn]);
     }

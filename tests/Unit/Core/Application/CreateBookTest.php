@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class CreateBookTest extends TestCase
 {
-    public function testItCreatesABook()
+    public function testItCreatesABook(): void
     {
         $books = new TestBookRepository();
         $command = new CreateBookCommand(

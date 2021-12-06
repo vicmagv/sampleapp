@@ -15,4 +15,5 @@ console:
 	docker-compose run --rm -u ${UID}:${GID} sh -c  "./bin/console $(c)"
 unit:
 	docker-compose run --rm -u ${UID}:${GID} php sh -c "./vendor/bin/phpunit --order=random --testsuite=Unit"
-
+stan:
+	docker-compose run --rm -u ${UID}:${GID} php sh -c "./vendor/bin/phpstan analyse"
